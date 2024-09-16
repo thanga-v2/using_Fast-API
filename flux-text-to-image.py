@@ -12,6 +12,11 @@ test = InferenceClient(model="gpt2", token=hf_key)
 
 print("test object", test)
 
+prompt = "beautifull pollachi road, sunshine after rain, both sides are covered with trees"
+
+response = test.text_to_image(prompt)
+
+print(response)
 
 
 
