@@ -1,0 +1,3 @@
+uvicorn <file-name>:<app> --reload
+
+uvicorn demo:app --reload
