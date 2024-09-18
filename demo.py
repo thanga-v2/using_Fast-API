@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = InferenceClient(model="groq", token=os.getenv('HFTOKEN'))
+client = InferenceClient(model="HuggingFaceTB/SmolLM-135M", token=os.getenv('HFTOKEN'))
 app = FastAPI()
 
 
@@ -48,3 +48,11 @@ async def details():
     }
 
 # generate default text with given prompt
+@app.get("/generate")
+async def gen():
+    prompt = "India is a country known for its spices and"
+    response = client.text_generation(prompt)
+    return {
+        "prompt" : prompt,
+        "response" : response
+    }

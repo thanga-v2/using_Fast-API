@@ -1,3 +1,9 @@
 uvicorn <file-name>:<app> --reload
 
 uvicorn demo:app --reload
+
+Model used for text generation -
+
+https://huggingface.co/HuggingFaceTB/SmolLM-135M
+
+
