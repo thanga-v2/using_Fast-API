@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = InferenceClient(model="gpt2", token=os.getenv('HFTOKEN'))
+client = InferenceClient(model="groq", token=os.getenv('HFTOKEN'))
 app = FastAPI()
 
 
@@ -38,3 +38,13 @@ async def token():
     return {
         "token - ": token
     }
+
+# lets say to get the cli / client details
+
+@app.get("/cli/details/")
+async def details():
+    return {
+        "Client Info -": client
+    }
+
+# generate default text with given prompt
