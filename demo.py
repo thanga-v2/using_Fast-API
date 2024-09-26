@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = InferenceClient(model="HuggingFaceTB/SmolLM-135M", token=os.getenv('HFTOKEN'))
+# client = InferenceClient(model="HuggingFaceTB/SmolLM-135M", token=os.getenv('HFTOKEN'))
+client = InferenceClient(model="gpt2", token=os.getenv('HFTOKEN'))
 app = FastAPI()
 
 
@@ -49,8 +50,19 @@ async def details():
 
 # generate default text with given prompt
 @app.get("/generate")
-async def gen():
+async def gen(prompt):
     prompt = "India is a country known for its spices and"
+    response = client.text_generation(prompt)
+    return {
+        "prompt" : prompt,
+        "response" : response
+    }
+
+
+@app.get("/converse")
+async def converse(prompt : Union[str,None]): # type annotations
+                                              # Union tells this or that (string or empty)
+    prompt = prompt or "Indian is known for"
     response = client.text_generation(prompt)
     return {
         "prompt" : prompt,
